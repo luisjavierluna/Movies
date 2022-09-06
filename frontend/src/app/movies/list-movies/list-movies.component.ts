@@ -16,4 +16,7 @@ export class ListMoviesComponent implements OnInit {
       
   }
 
+  remove(movieIndex: number): void{
+    this.movies.splice(movieIndex, 1)
+  }
 }

@@ -9,7 +9,8 @@
 <div *ngIf="movies && movies.length > 0">
     <div *ngFor="let movie of movies; let index = index" class="movie-container">
         <div>
-            Movie {{index}} {{movie.movieTitle}}
+            Movie {{index}} {{movie.movieTitle}} 
+            <button style="margin-left: 1rem" (click)="remove(index)" >Remover</button>
         </div>
         <div>
             {{movie.releaseDate | date: "dd-MMMM-yyyy" | uppercase}}
