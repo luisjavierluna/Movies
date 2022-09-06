@@ -1,22 +1,22 @@
-<div *ngIf="!movies">
-    <img src="https://upload.wikimedia.org/wikipedia/commons/b/b1/Loading_icon.gif?20151024034921" alt="">
-</div>
-
-<div *ngIf="movies?.length === 0">
-    <p>No hay peliculas para mostrar</p>
-</div>
-
-<div *ngIf="movies && movies.length > 0">
-    <div *ngFor="let movie of movies; let index = index" class="movie-container">
-        <div>
-            Movie {{index}} {{movie.movieTitle}} 
-            <button style="margin-left: 1rem" (click)="remove(index)" >Remover</button>
+<app-list-generic [list]="movies">
+    <ng-container empty >
+        <div>Custom message for <b>empty</b> content</div>
+    </ng-container>
+    <ng-container content>
+        <div 
+            *ngFor="let movie of movies; let index = index" 
+            class="movie-container"
+        >
+            <div>
+                Movie {{index}} {{movie.movieTitle}} 
+                <button style="margin-left: 1rem" (click)="remove(index)" >Remover</button>
+            </div>
+            <div>
+                {{movie.releaseDate | date: "dd-MMMM-yyyy" | uppercase}}
+            </div>
+            <div>
+                {{movie.price | currency}}
+            </div>
         </div>
-        <div>
-            {{movie.releaseDate | date: "dd-MMMM-yyyy" | uppercase}}
-        </div>
-        <div>
-            {{movie.price | currency}}
-        </div>
-    </div>
-</div>
+    </ng-container>
+</app-list-generic>

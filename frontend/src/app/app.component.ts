@@ -9,21 +9,7 @@ export class AppComponent implements OnInit {
   title = 'frontend';
   
   moviesInTheaters;
-  moviesFutureReleases = [{
-    movieTitle: 'Avengers: Endgame',
-    releaseDate: new Date(),
-    price: 1400.99
-  },
-  {
-    movieTitle: 'Inception',
-    releaseDate: new Date('2016-11-14'),
-    price: 300.99
-  },
-  {
-    movieTitle: 'Rocky',
-    releaseDate: new Date('2016-11-14'),
-    price: 300.99
-  }]
+  moviesFutureReleases = []
 
   
   
@@ -39,7 +25,7 @@ export class AppComponent implements OnInit {
         releaseDate: new Date('2016-11-14'),
         price: 300.99
       }]  
-    }, 500);
+    }, 3000);
 
   }
 }
