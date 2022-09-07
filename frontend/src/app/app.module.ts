@@ -5,6 +5,9 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { ListMoviesComponent } from './movies/list-movies/list-movies.component';
 import { ListGenericComponent } from './utilities/list-generic/list-generic.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+
+import {MaterialModule} from './material/material.module'
 
 @NgModule({
   declarations: [
@@ -14,7 +17,9 @@ import { ListGenericComponent } from './utilities/list-generic/list-generic.comp
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    BrowserAnimationsModule,
+    MaterialModule
   ],
   providers: [],
   bootstrap: [AppComponent]
