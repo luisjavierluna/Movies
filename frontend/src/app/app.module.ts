@@ -7,13 +7,15 @@ import { ListMoviesComponent } from './movies/list-movies/list-movies.component'
 import { ListGenericComponent } from './utilities/list-generic/list-generic.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
-import {MaterialModule} from './material/material.module'
+import {MaterialModule} from './material/material.module';
+import { MenuComponent } from './menu/menu.component'
 
 @NgModule({
   declarations: [
     AppComponent,
     ListMoviesComponent,
-    ListGenericComponent
+    ListGenericComponent,
+    MenuComponent
   ],
   imports: [
     BrowserModule,
