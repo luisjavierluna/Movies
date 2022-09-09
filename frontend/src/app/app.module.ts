@@ -8,14 +8,16 @@ import { ListGenericComponent } from './utilities/list-generic/list-generic.comp
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import {MaterialModule} from './material/material.module';
-import { MenuComponent } from './menu/menu.component'
+import { MenuComponent } from './menu/menu.component';
+import { RatingComponent } from './utilities/rating/rating.component'
 
 @NgModule({
   declarations: [
     AppComponent,
     ListMoviesComponent,
     ListGenericComponent,
-    MenuComponent
+    MenuComponent,
+    RatingComponent
   ],
   imports: [
     BrowserModule,

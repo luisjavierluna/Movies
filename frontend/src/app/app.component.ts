@@ -22,36 +22,6 @@ export class AppComponent implements OnInit {
         movieTitle: 'Moana',
         releaseDate: new Date('2016-11-14'),
         price: 300.99
-      },
-      {
-        movieTitle: 'Spider-Man - Far From Home',
-        releaseDate: new Date(),
-        price: 1400.99
-      },
-      {
-        movieTitle: 'Moana',
-        releaseDate: new Date('2016-11-14'),
-        price: 300.99
-      },
-      {
-        movieTitle: 'Spider-Man - Far From Home',
-        releaseDate: new Date(),
-        price: 1400.99
-      },
-      {
-        movieTitle: 'Moana',
-        releaseDate: new Date('2016-11-14'),
-        price: 300.99
-      },
-      {
-        movieTitle: 'Spider-Man - Far From Home',
-        releaseDate: new Date(),
-        price: 1400.99
-      },
-      {
-        movieTitle: 'Moana',
-        releaseDate: new Date('2016-11-14'),
-        price: 300.99
       }]  
     }, 3000);
 
