@@ -24,6 +24,9 @@ export class AppComponent implements OnInit {
         price: 300.99
       }]  
     }, 3000);
+  }
 
+  manejarRated(voto: number): void{
+    alert(voto);
   }
 }

@@ -2,7 +2,8 @@
 
 <div class="container">
 
-    <app-rating></app-rating>
+    <app-rating (rated)="manejarRated($event)"></app-rating>
+
     <!-- <h2>In Theaters</h2>
     
     <app-list-movies [movies]="moviesInTheaters"></app-list-movies>
