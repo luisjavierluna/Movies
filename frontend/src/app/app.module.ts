@@ -9,7 +9,9 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import {MaterialModule} from './material/material.module';
 import { MenuComponent } from './menu/menu.component';
-import { RatingComponent } from './utilities/rating/rating.component'
+import { RatingComponent } from './utilities/rating/rating.component';
+import { LandingPageComponent } from './landing-page/landing-page.component';
+import { IndexGenresComponent } from './genres/index-genres/index-genres.component'
 
 @NgModule({
   declarations: [
@@ -17,7 +19,9 @@ import { RatingComponent } from './utilities/rating/rating.component'
     ListMoviesComponent,
     ListGenericComponent,
     MenuComponent,
-    RatingComponent
+    RatingComponent,
+    LandingPageComponent,
+    IndexGenresComponent
   ],
   imports: [
     BrowserModule,
