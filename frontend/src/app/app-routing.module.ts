@@ -9,6 +9,7 @@ import { IndexGenresComponent } from './genres/index-genres/index-genres.compone
 import { LandingPageComponent } from './landing-page/landing-page.component';
 import { CreateMovieComponent } from './movies/create-movie/create-movie.component';
 import { EditMovieComponent } from './movies/edit-movie/edit-movie.component';
+import { FilterMoviesComponent } from './movies/filter-movies/filter-movies.component';
 import { CreateTheaterComponent } from './theaters/create-theater/create-theater.component';
 import { EditTheaterComponent } from './theaters/edit-theater/edit-theater.component';
 import { IndexTheaterComponent } from './theaters/index-theater/index-theater.component';
@@ -26,6 +27,7 @@ const routes: Routes = [
   {path: 'theaters/edit/:id', component: EditTheaterComponent},
   {path: 'movies/create', component: CreateMovieComponent},
   {path: 'movies/edit/:id', component: EditMovieComponent},
+  {path: 'movies/search', component: FilterMoviesComponent},
   {path: '**', redirectTo: ''},
 ];
 
