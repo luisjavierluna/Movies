@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
+import { Location } from '@angular/common';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-filter-movies',
@@ -8,7 +10,9 @@ import { FormBuilder, FormGroup } from '@angular/forms';
 })
 export class FilterMoviesComponent implements OnInit {
 
-  constructor(private formBuilder: FormBuilder) { }
+  constructor(private formBuilder: FormBuilder,
+    private location: Location,
+    private activatedRoute: ActivatedRoute) { }
 
   form: FormGroup;
 
@@ -35,12 +39,63 @@ export class FilterMoviesComponent implements OnInit {
 
   ngOnInit(): void {
     this.form = this.formBuilder.group(this.originalForm)
+    this.readValuesURL();
+    this.searchMovies(this.form.value);
 
     this.form.valueChanges
       .subscribe(values => {
         this.movies = this.moviesOriginal;
         this.searchMovies(values)
+        this.writeSearchParametersInURL()
       })
+  }
+
+  private readValuesURL(){
+    this.activatedRoute.queryParams.subscribe((params) => {
+      var object: any = {};
+
+      if(params.title){
+        object.title = params.title;
+      }
+
+      if(params.genreId){
+        object.genreId = Number(params.genreId);
+      }
+
+      if(params.futureReleases){
+        object.futureReleases = params.futureReleases;
+      }
+
+      if(params.inTheaters){
+        object.inTheaters = params.inTheaters;
+      }
+
+      this.form.patchValue(object);
+    })
+  }
+
+  private writeSearchParametersInURL(){
+    var queryStrings = [];
+
+    var formValues = this.form.value;
+
+    if (formValues.title) {
+      queryStrings.push(`title=${formValues.title}`)
+    }
+
+    if (formValues.genreId) {
+      queryStrings.push(`genreId=${formValues.genreId}`)
+    }
+
+    if (formValues.futureReleases) {
+      queryStrings.push(`futureReleases=${formValues.futureReleases}`)
+    }
+
+    if (formValues.inTheaters) {
+      queryStrings.push(`inTheaters=${formValues.inTheaters}`)
+    }
+
+    this.location.replaceState('movies/search', queryStrings.join('&'))
   }
 
   searchMovies(values: any) {
