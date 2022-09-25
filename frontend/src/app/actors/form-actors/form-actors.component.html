@@ -13,6 +13,8 @@
 
     <app-input-img [urlCurrentImage]="model?.photo" (selectedFile)="selectedFile($event)"></app-input-img>
 
+    <app-input-markdown (changeMarkdown)="changeMarkdown($event)"></app-input-markdown>
+
     <div>
         <button mat-flat-button color="primary" [disabled]="form.invalid">
             Guardar Cambios
