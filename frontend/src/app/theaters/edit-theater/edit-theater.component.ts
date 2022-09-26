@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { createTheaterDTO, TheaterDTO } from '../theather';
 
 @Component({
   selector: 'app-edit-theater',
@@ -9,7 +10,13 @@ export class EditTheaterComponent implements OnInit {
 
   constructor() { }
 
+  model: TheaterDTO = {name: "Sambil"};
+
   ngOnInit(): void {
   }
 
+  saveChanges(theater: createTheaterDTO){
+    console.log(theater);
+  }
+  
 }
