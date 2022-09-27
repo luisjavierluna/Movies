@@ -2,14 +2,15 @@ import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { MaterialModule } from './material/material.module';
+import { ReactiveFormsModule } from '@angular/forms';
+import { MarkdownModule } from 'ngx-markdown';
+import { LeafletModule } from '@asymmetrik/ngx-leaflet';
+
 import { AppComponent } from './app.component';
 import { ListMoviesComponent } from './movies/list-movies/list-movies.component';
 import { ListGenericComponent } from './utilities/list-generic/list-generic.component';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { ReactiveFormsModule } from '@angular/forms';
-import { MarkdownModule } from 'ngx-markdown';
-
-import {MaterialModule} from './material/material.module';
 import { MenuComponent } from './menu/menu.component';
 import { RatingComponent } from './utilities/rating/rating.component';
 import { LandingPageComponent } from './landing-page/landing-page.component';
@@ -29,7 +30,8 @@ import { FilterMoviesComponent } from './movies/filter-movies/filter-movies.comp
 import { FormActorsComponent } from './actors/form-actors/form-actors.component';
 import { InputImgComponent } from './utilities/input-img/input-img.component';
 import { InputMarkdownComponent } from './utilities/input-markdown/input-markdown.component';
-import { FormTheaterComponent } from './theaters/form-theater/form-theater.component'
+import { FormTheaterComponent } from './theaters/form-theater/form-theater.component';
+import { MapComponent } from './utilities/map/map.component'
 
 @NgModule({
   declarations: [
@@ -55,7 +57,8 @@ import { FormTheaterComponent } from './theaters/form-theater/form-theater.compo
     FormActorsComponent,
     InputImgComponent,
     InputMarkdownComponent,
-    FormTheaterComponent
+    FormTheaterComponent,
+    MapComponent
   ],
   imports: [
     BrowserModule,
@@ -63,6 +66,7 @@ import { FormTheaterComponent } from './theaters/form-theater/form-theater.compo
     BrowserAnimationsModule,
     MaterialModule,
     ReactiveFormsModule,
+    LeafletModule,
     MarkdownModule.forRoot()
   ],
   providers: [],
