@@ -10,7 +10,7 @@ export class EditTheaterComponent implements OnInit {
 
   constructor() { }
 
-  model: TheaterDTO = {name: "Sambil"};
+  model: TheaterDTO = {name: "Sambil", latitude: 20.676003014849915, longitude: -103.34514856338502};
 
   ngOnInit(): void {
   }
