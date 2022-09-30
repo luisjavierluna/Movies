@@ -4,7 +4,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MaterialModule } from './material/material.module';
-import { ReactiveFormsModule } from '@angular/forms';
+import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { MarkdownModule } from 'ngx-markdown';
 import { LeafletModule } from '@asymmetrik/ngx-leaflet';
 
@@ -68,6 +68,7 @@ import { FormMovieComponent } from './movies/form-movie/form-movie.component'
     BrowserAnimationsModule,
     MaterialModule,
     ReactiveFormsModule,
+    FormsModule,
     LeafletModule,
     MarkdownModule.forRoot()
   ],

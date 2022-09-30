@@ -44,7 +44,7 @@ export class FormMovieComponent implements OnInit {
   }
 
   changeMarkdown(text){
-    this.form.get('resumen').setValue(text);
+    this.form.get('summary').setValue(text);
   }
 
   saveChanges(){

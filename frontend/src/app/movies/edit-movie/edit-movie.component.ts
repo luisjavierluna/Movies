@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { MovieDTO } from '../movie';
+import { createMovieDTO, MovieDTO } from '../movie';
 
 @Component({
   selector: 'app-edit-movie',
@@ -16,4 +16,7 @@ export class EditMovieComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  saveChanges(movie: createMovieDTO){
+    console.log(movie);
+  }
 }
