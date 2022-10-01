@@ -34,6 +34,12 @@
     (changeMarkdown)="changeMarkdown($event)"
     [placeHolderTextArea]="'Summary'"></app-input-markdown>
 
+    <h4>Select Genres</h4>
+
+    <app-multiple-selector 
+    [Selected]="selectedGenres" 
+    [NoSelected]="noSelectedGenres"></app-multiple-selector>
+
     <div>
         <button mat-flat-button color="primary" [disabled]="form.invalid">
             Save Changes

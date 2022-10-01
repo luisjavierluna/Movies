@@ -32,7 +32,8 @@ import { InputImgComponent } from './utilities/input-img/input-img.component';
 import { InputMarkdownComponent } from './utilities/input-markdown/input-markdown.component';
 import { FormTheaterComponent } from './theaters/form-theater/form-theater.component';
 import { MapComponent } from './utilities/map/map.component';
-import { FormMovieComponent } from './movies/form-movie/form-movie.component'
+import { FormMovieComponent } from './movies/form-movie/form-movie.component';
+import { MultipleSelectorComponent } from './utilities/multiple-selector/multiple-selector.component'
 
 @NgModule({
   declarations: [
@@ -60,7 +61,8 @@ import { FormMovieComponent } from './movies/form-movie/form-movie.component'
     InputMarkdownComponent,
     FormTheaterComponent,
     MapComponent,
-    FormMovieComponent
+    FormMovieComponent,
+    MultipleSelectorComponent
   ],
   imports: [
     BrowserModule,
