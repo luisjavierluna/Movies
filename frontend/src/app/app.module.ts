@@ -33,7 +33,8 @@ import { InputMarkdownComponent } from './utilities/input-markdown/input-markdow
 import { FormTheaterComponent } from './theaters/form-theater/form-theater.component';
 import { MapComponent } from './utilities/map/map.component';
 import { FormMovieComponent } from './movies/form-movie/form-movie.component';
-import { MultipleSelectorComponent } from './utilities/multiple-selector/multiple-selector.component'
+import { MultipleSelectorComponent } from './utilities/multiple-selector/multiple-selector.component';
+import { AutocompleteActorsComponent } from './actors/autocomplete-actors/autocomplete-actors.component'
 
 @NgModule({
   declarations: [
@@ -62,7 +63,8 @@ import { MultipleSelectorComponent } from './utilities/multiple-selector/multipl
     FormTheaterComponent,
     MapComponent,
     FormMovieComponent,
-    MultipleSelectorComponent
+    MultipleSelectorComponent,
+    AutocompleteActorsComponent
   ],
   imports: [
     BrowserModule,
