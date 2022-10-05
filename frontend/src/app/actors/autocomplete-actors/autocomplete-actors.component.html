@@ -22,6 +22,9 @@
     mat-table
     [dataSource]="selectedActors"
     class="mat-elevation-z8"
+    cdkDropList
+    [cdkDropListData]="selectedActors"
+    (cdkDropListDropped)="dragEnds($event)"
 >
 
 <ng-container matColumnDef="image">
@@ -57,6 +60,8 @@
     </td>
 </ng-container>
 
-<tr mat-row *matRowDef="let row; columns: columnsToShow"></tr>
+<tr mat-row *matRowDef="let row; columns: columnsToShow"
+    cdkDrag [cdkDragData]="row"
+></tr>
 
 </table>
