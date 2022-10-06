@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using backend.Validations;
+using System.ComponentModel.DataAnnotations;
 
 namespace backend.Entities
 {
@@ -7,6 +8,7 @@ namespace backend.Entities
         public int Id { get; set; }
         [Required]
         [StringLength(maximumLength: 50)]
+        [FirstCapitalLetter]
         public string Name { get; set; }
 
     }
