@@ -2,7 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { firstCapitalLetter } from 'src/app/utilities/validators/firstCapitalLetter';
-import { genreCreateDTO } from '../genre';
+import { createGenreDTO } from '../genre';
+import { GenresService } from '../genres.service';
 
 @Component({
   selector: 'app-create-genre',
@@ -11,11 +12,13 @@ import { genreCreateDTO } from '../genre';
 })
 export class CreateGenreComponent{
 
-  constructor(private router: Router, ) { }
+  constructor(private router: Router, private genresService: GenresService) { }
 
-  saveChanges(genre: genreCreateDTO){
-    // ... save the changes
-    console.log(genre);
-    this.router.navigate(['/genres']);
+  saveChanges(genre: createGenreDTO){
+    this.genresService.create(genre)
+    .subscribe({
+      next: () => this.router.navigate(['/genres']),
+      error: error => console.error(error)
+    })
   }
 }
