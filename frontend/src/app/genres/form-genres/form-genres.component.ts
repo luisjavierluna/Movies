@@ -15,6 +15,9 @@ export class FormGenresComponent implements OnInit {
   form: FormGroup;
 
   @Input()
+  errors: string[] = []
+
+  @Input()
   model: createGenreDTO;
 
   @Output()

@@ -1,3 +1,5 @@
 <h2>Create Genre</h2>
 
-<app-form-genres (onSubmit)="saveChanges($event)"></app-form-genres>
+<app-form-genres 
+[errors]="errors"
+(onSubmit)="saveChanges($event)"></app-form-genres>
