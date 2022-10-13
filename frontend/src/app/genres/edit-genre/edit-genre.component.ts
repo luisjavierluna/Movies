@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
-import { createGenreDTO } from '../genre';
+import { ActivatedRoute, Router } from '@angular/router';
+import { parseErrorsAPI } from 'src/app/utilities/utilities';
+import { createGenreDTO, genreDTO } from '../genre';
+import { GenresService } from '../genres.service';
 
 @Component({
   selector: 'app-edit-genre',
@@ -9,17 +11,31 @@ import { createGenreDTO } from '../genre';
 })
 export class EditGenreComponent implements OnInit {
 
-  constructor(private router: Router) { }
+  constructor(
+    private router: Router, 
+    private genresService: GenresService,
+    private activatedRoute: ActivatedRoute) { }
 
-  model: createGenreDTO = {name: 'Drama'}
+  model: genreDTO
+  errors: string[] = []
 
   ngOnInit(): void {
+    this.activatedRoute.params.subscribe((params) => {
+      this.genresService.getById(params.id)
+        .subscribe({
+          next: genre => {this.model = genre},
+          error: () => this.router.navigate(['/genres'])
+        })
+    })
   }
 
   saveChanges(genre: createGenreDTO){
-    // ... save the changes
-    console.log(genre);
-    this.router.navigate(['/genres']);
+    this.genresService.edit(this.model.id, genre)
+    .subscribe({
+      next: () => {this.router.navigate(['/genres'])},
+      error: error => this.errors = parseErrorsAPI(error)
+    })
+    
   }
 
 }

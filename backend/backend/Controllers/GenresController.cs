@@ -36,9 +36,16 @@ namespace backend.Controllers
         }
 
         [HttpGet("{Id:int}")]
-        public Task<ActionResult<Genre>> Get(int Id)
+        public async Task<ActionResult<GenreDTO>> Get(int Id)
         {
-            throw new NotImplementedException();
+            var genre = await context.Genres.FirstOrDefaultAsync(x => x.Id == Id);
+
+            if (genre == null)
+            {
+                return NotFound();
+            }
+
+            return mapper.Map<GenreDTO>(genre);
         }
 
         [HttpPost]
@@ -50,10 +57,21 @@ namespace backend.Controllers
             return NoContent();
         }
 
-        [HttpPut]
-        public ActionResult Put()
+        
+        [HttpPut("{id:int}")]
+        public async Task<ActionResult> Put(int Id, [FromBody] CreateGenreDTO createGenreDTO)
         {
-            throw new NotImplementedException();
+            var genre = await context.Genres.FirstOrDefaultAsync(x => x.Id == Id);
+
+            if (genre == null)
+            {
+                return NotFound();
+            }
+
+            genre = mapper.Map(createGenreDTO, genre);
+
+            await context.SaveChangesAsync();
+            return NoContent();
         }
 
         [HttpDelete]

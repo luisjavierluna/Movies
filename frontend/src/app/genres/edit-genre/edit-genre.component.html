@@ -1,5 +1,8 @@
 <h2>Edit Genre</h2>
 
-<app-form-genres 
+<app-form-genres *ngIf="model"
 [model]="model"
+[errores]="errors"
 (onSubmit)="saveChanges($event)"></app-form-genres>
+
+<mat-spinner *ngIf="!model"></mat-spinner>
