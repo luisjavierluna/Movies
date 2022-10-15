@@ -40,4 +40,12 @@ export class IndexGenresComponent implements OnInit {
     this.recordsToShowQuantity = data.pageSize
     this.loadRecords(this.currentPage, this.recordsToShowQuantity)
   }
+
+  delete(id: number){
+    this.genresService.delete(id)
+    .subscribe({
+      next: () => this.loadRecords(this.currentPage, this.recordsToShowQuantity),
+      error: error => console.error(error)
+    })
+  }
 }

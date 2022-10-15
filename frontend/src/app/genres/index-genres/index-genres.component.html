@@ -22,7 +22,13 @@
                         mat-flat-button 
                         color="primary"
                     >Edit</a>
-                    <button mat-flat-button color="warn">Borrar</button>
+
+                    <button mat-flat-button color="warn" 
+                    [swal]="{title: 'Confirmation', 
+                    text: 'Are you sure you want to delete the record?', 
+                    showCancelButton: true}"
+                    (confirm)="delete(element.id)">Delete</button>
+                    
                 </td>
             </ng-container>
 
