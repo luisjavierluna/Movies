@@ -11,10 +11,13 @@ export class FormActorsComponent implements OnInit {
 
   constructor(private formBuilder: FormBuilder) { }
 
-  form: FormGroup;
+  form: FormGroup
 
   @Input()
-  model: actorDTO;
+  model: actorDTO
+
+  @Input()
+  errors: string[] = []
 
   @Output()
   OnSubmit: EventEmitter<createActorDTO> = new EventEmitter<createActorDTO>();
@@ -27,7 +30,7 @@ export class FormActorsComponent implements OnInit {
           validators: [Validators.required]
         },
       ],
-      dateOfBirth: '',
+      birthDate: '',
       photo: '',
       biography: ''
     })

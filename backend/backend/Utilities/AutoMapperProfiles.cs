@@ -10,6 +10,9 @@ namespace backend.Utilities
         {
             CreateMap<Genre, GenreDTO>().ReverseMap();
             CreateMap<CreateGenreDTO, Genre>();
+            CreateMap<Actor, ActorDTO>().ReverseMap();
+            CreateMap<CreateActorDTO, Actor>()
+                .ForMember(x => x.Photo, options => options.Ignore());
         }
     }
 }

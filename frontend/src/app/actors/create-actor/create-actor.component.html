@@ -1,3 +1,5 @@
 <p>Crear Actor</p>
 
-<app-form-actors (OnSubmit)="saveChanges($event)"></app-form-actors>
+<app-form-actors 
+[errors]="errors"
+(OnSubmit)="saveChanges($event)"></app-form-actors>
