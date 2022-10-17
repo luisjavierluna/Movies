@@ -36,6 +36,19 @@ namespace backend.Controllers
             return mapper.Map<List<ActorDTO>>(actors);
         }
 
+        [HttpGet("{id:int}")]
+        public async Task<ActionResult<ActorDTO>> Get(int id)
+        {
+            var actor = await context.Actors.FirstOrDefaultAsync(x => x.Id == id);
+
+            if (actor == null)
+            {
+                return NotFound();
+            }
+
+            return mapper.Map<ActorDTO>(actor);
+        }
+
         [HttpPost]
         public async Task<ActionResult> Post([FromForm] CreateActorDTO createActorDTO)
         {
@@ -51,9 +64,32 @@ namespace backend.Controllers
             return NoContent();
         }
 
+        [HttpPut("{id:int}")]
+        public async Task<ActionResult> Put(int id, [FromForm] CreateActorDTO createActorDTO)
+        {
+            var actor = await context.Actors.FirstOrDefaultAsync(x => x.Id == id);
+
+            if (actor == null)
+            {
+                return NotFound();
+            }
+
+            actor = mapper.Map(createActorDTO, actor);
+
+            if (createActorDTO.Photo != null)
+            {
+                actor.Photo = await storerFiles.SaveFile(container, createActorDTO.Photo);
+            }
+
+            await context.SaveChangesAsync();
+            return NoContent();
+        }
+
         [HttpDelete("{id:int}")]
         public async Task<ActionResult> Delete(int id)
         {
+            var actor = await context.Actors.FirstOrDefaultAsync(x => x.Id == id);
+
             var exists = await context.Actors.AnyAsync(x => x.Id == id);
 
             if (!exists)
@@ -63,6 +99,8 @@ namespace backend.Controllers
 
             context.Remove(new Actor() { Id = id });
             await context.SaveChangesAsync();
+
+            await storerFiles.DeleteFile(actor.Photo, container);
             return NoContent();
         }
     }

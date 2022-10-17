@@ -1,3 +1,6 @@
 <h2>Edit Actors</h2>
 
-<app-form-actors [model]="model" (OnSubmit)="saveChanges($event)"></app-form-actors>
+<app-form-actors *ngIf="model"
+[model]="model" (OnSubmit)="saveChanges($event)"></app-form-actors>
+
+<mat-spinner *ngIf="!model"></mat-spinner>

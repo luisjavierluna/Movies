@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
+import { parseErrorsAPI } from 'src/app/utilities/utilities';
 import { actorDTO, createActorDTO } from '../actor';
+import { ActorsService } from '../actors.service';
 
 @Component({
   selector: 'app-edit-actor',
@@ -9,17 +11,30 @@ import { actorDTO, createActorDTO } from '../actor';
 })
 export class EditActorComponent implements OnInit {
 
-  constructor(private activatedRoute: ActivatedRoute) { }
+  constructor(
+    private router: Router, 
+    private actorsService: ActorsService,
+    private activatedRoute: ActivatedRoute) { }
 
-  model: actorDTO = {name: 'Felipe', birthDate: new Date, photo: 'https://m.media-amazon.com/images/M/MV5BNzZiNTEyNTItYjNhMS00YjI2LWIwMWQtZmYwYTRlNjMyZTJjXkEyXkFqcGdeQXVyMTExNzQzMDE0._V1_UX214_CR0,0,214,317_AL_.jpg'}
+  model: actorDTO
+  errors: string[] = []
 
   ngOnInit(): void {
-    this.activatedRoute.params.subscribe(params => {
-      // alert(params.id);  
+    this.activatedRoute.params.subscribe((params) => {
+      this.actorsService.getById(params.id)
+        .subscribe({
+          next: actor => {this.model = actor},
+          error: () => this.router.navigate(['/actors'])
+        })
     })
   }
 
   saveChanges(actor: createActorDTO){
-    console.log(actor);
+    this.actorsService.edit(this.model.id, actor)
+    .subscribe({
+      next: () => {this.router.navigate(['/actors'])},
+      error: error => this.errors = parseErrorsAPI(error)
+    })
+    
   }
 }

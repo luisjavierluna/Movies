@@ -16,6 +16,7 @@
     <app-input-img [urlCurrentImage]="model?.photo" (selectedFile)="selectedFile($event)"></app-input-img>
 
     <app-input-markdown
+    [contentMarkdown]="model?.biography"
     [placeHolderTextArea]="'Biography'"
     (changeMarkdown)="changeMarkdown($event)"></app-input-markdown>
 
