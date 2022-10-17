@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "RLO5lK1uL9AvubFtwzjvKOhxkJZZ9vESghud81ghaSI=",
+  "Hash": "L8nTjtRNZyBuB6sYPwonv7Oz1F4PGGoKEZAuz75kt2Y=",
   "Source": "backend",
   "BasePath": "_content/backend",
   "Mode": "Default",
@@ -15,5 +15,23 @@
       "Pattern": "**"
     }
   ],
-  "Assets": []
+  "Assets": [
+    {
+      "Identity": "C:\\Users\\javie\\source\\repos\\Movies\\backend\\backend\\wwwroot\\actors\\9f868e9d-4c62-4b9c-abe3-0c08e6ea6137.jpg",
+      "SourceId": "backend",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\javie\\source\\repos\\Movies\\backend\\backend\\wwwroot\\",
+      "BasePath": "_content/backend",
+      "RelativePath": "actors/9f868e9d-4c62-4b9c-abe3-0c08e6ea6137.jpg",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\actors\\9f868e9d-4c62-4b9c-abe3-0c08e6ea6137.jpg"
+    }
+  ]
 }

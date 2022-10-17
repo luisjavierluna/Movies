@@ -4,6 +4,7 @@ using backend.Entities;
 using backend.Utilities;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 
 namespace backend.Controllers
 {
@@ -26,6 +27,15 @@ namespace backend.Controllers
             this.storerFiles = storerFiles;
         }
 
+        [HttpGet]
+        public async Task<ActionResult<List<ActorDTO>>> Get([FromQuery] PaginationDTO paginationDTO)
+        {
+            var queryable = context.Actors.AsQueryable();
+            await HttpContext.InsertParametersPaginationInHeader(queryable);
+            var actors = await queryable.OrderBy(x => x.Name).Paginate(paginationDTO).ToListAsync();
+            return mapper.Map<List<ActorDTO>>(actors);
+        }
+
         [HttpPost]
         public async Task<ActionResult> Post([FromForm] CreateActorDTO createActorDTO)
         {
@@ -37,6 +47,21 @@ namespace backend.Controllers
             }
 
             context.Add(actor);
+            await context.SaveChangesAsync();
+            return NoContent();
+        }
+
+        [HttpDelete("{id:int}")]
+        public async Task<ActionResult> Delete(int id)
+        {
+            var exists = await context.Actors.AnyAsync(x => x.Id == id);
+
+            if (!exists)
+            {
+                return NotFound();
+            }
+
+            context.Remove(new Actor() { Id = id });
             await context.SaveChangesAsync();
             return NoContent();
         }
