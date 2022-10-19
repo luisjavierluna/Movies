@@ -1,7 +1,7 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Coordinate } from 'src/app/utilities/map/coordinate';
-import { createTheaterDTO } from '../theather';
+import { createTheaterDTO } from '../theater';
 
 @Component({
   selector: 'app-form-theater',
@@ -13,6 +13,9 @@ export class FormTheaterComponent implements OnInit {
   constructor(private formBuilder: FormBuilder) { }
 
   form: FormGroup;
+
+  @Input()
+  errors: string[] = []
 
   @Input()
   model: createTheaterDTO;

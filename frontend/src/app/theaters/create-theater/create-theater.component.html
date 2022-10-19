@@ -1,3 +1,5 @@
 <h2>Create Theater</h2>
 
-<app-form-theater (saveChanges)="saveChanges($event)"></app-form-theater>
+<app-form-theater 
+[errors]="errors"
+(saveChanges)="saveChanges($event)"></app-form-theater>

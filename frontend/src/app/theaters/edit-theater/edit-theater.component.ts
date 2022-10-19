@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { createTheaterDTO, TheaterDTO } from '../theather';
+import { createTheaterDTO, TheaterDTO } from '../theater';
 
 @Component({
   selector: 'app-edit-theater',
