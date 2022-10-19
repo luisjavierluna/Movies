@@ -70,3 +70,7 @@ C:\Users\javie\source\repos\Movies\backend\backend\bin\Debug\net6.0\Microsoft.Bc
 C:\Users\javie\source\repos\Movies\backend\backend\bin\Debug\net6.0\Microsoft.Extensions.DependencyInjection.dll
 C:\Users\javie\source\repos\Movies\backend\backend\bin\Debug\net6.0\System.IO.Hashing.dll
 C:\Users\javie\source\repos\Movies\backend\backend\bin\Debug\net6.0\System.Memory.Data.dll
+C:\Users\javie\source\repos\Movies\backend\backend\bin\Debug\net6.0\Microsoft.EntityFrameworkCore.SqlServer.NetTopologySuite.dll
+C:\Users\javie\source\repos\Movies\backend\backend\bin\Debug\net6.0\NetTopologySuite.dll
+C:\Users\javie\source\repos\Movies\backend\backend\bin\Debug\net6.0\NetTopologySuite.IO.SqlServerBytes.dll
+C:\Users\javie\source\repos\Movies\backend\backend\obj\Debug\net6.0\EFCoreSqlServerNetTopologySuite.cs
