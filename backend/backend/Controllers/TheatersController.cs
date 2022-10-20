@@ -32,11 +32,40 @@ namespace backend.Controllers
             return mapper.Map<List<TheaterDTO>>(theaters);
         }
 
+        [HttpGet("{Id:int}")]
+        public async Task<ActionResult<TheaterDTO>> Get(int Id)
+        {
+            var theater = await context.Theaters.FirstOrDefaultAsync(x => x.Id == Id);
+
+            if (theater == null)
+            {
+                return NotFound();
+            }
+
+            return mapper.Map<TheaterDTO>(theater);
+        }
+
         [HttpPost]
         public async Task<ActionResult> Post([FromBody] CreateTheaterDTO treateTheaterDTO)
         {
             var theater = mapper.Map<Theater>(treateTheaterDTO);
             context.Add(theater);
+            await context.SaveChangesAsync();
+            return NoContent();
+        }
+
+        [HttpPut("{id:int}")]
+        public async Task<ActionResult> Put(int Id, [FromBody] CreateTheaterDTO createTheaterDTO)
+        {
+            var theater = await context.Theaters.FirstOrDefaultAsync(x => x.Id == Id);
+
+            if (theater == null)
+            {
+                return NotFound();
+            }
+
+            theater = mapper.Map(createTheaterDTO, theater);
+
             await context.SaveChangesAsync();
             return NoContent();
         }

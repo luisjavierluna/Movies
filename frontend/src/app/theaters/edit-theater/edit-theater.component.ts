@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import { Router, ActivatedRoute } from '@angular/router';
+import { parseErrorsAPI } from 'src/app/utilities/utilities';
 import { createTheaterDTO, theaterDTO } from '../theater';
+import { TheatersService } from '../theaters.service';
 
 @Component({
   selector: 'app-edit-theater',
@@ -8,15 +11,30 @@ import { createTheaterDTO, theaterDTO } from '../theater';
 })
 export class EditTheaterComponent implements OnInit {
 
-  constructor() { }
+  constructor(
+    private router: Router, 
+    private theatersService: TheatersService,
+    private activatedRoute: ActivatedRoute) { }
 
-  model: theaterDTO = {name: "Sambil", latitude: 20.676003014849915, longitude: -103.34514856338502};
+  model: theaterDTO
+  errors: string[] = []
 
   ngOnInit(): void {
+    this.activatedRoute.params.subscribe((params) => {
+      this.theatersService.getById(params.id)
+        .subscribe({
+          next: theater => {this.model = theater},
+          error: () => this.router.navigate(['/theaters'])
+        })
+    })
   }
 
   saveChanges(theater: createTheaterDTO){
-    console.log(theater);
+    this.theatersService.edit(this.model.id, theater)
+    .subscribe({
+      next: () => {this.router.navigate(['/theaters'])},
+      error: error => this.errors = parseErrorsAPI(error)
+    }) 
   }
   
 }

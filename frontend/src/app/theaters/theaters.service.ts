@@ -23,6 +23,14 @@ export class TheatersService {
     params = params.append('recordsPerPage', recordsToShowQuantity.toString())
     return this.http.get<theaterDTO[]>(this.apiURL, {observe: 'response', params})
   }
+  
+  public getById(id: number): Observable<theaterDTO>{
+    return this.http.get<theaterDTO>(`${this.apiURL}/${id}`)
+  }
+
+  public edit(id: number, theater: createTheaterDTO){
+    return this.http.put(`${this.apiURL}/${id}`, theater)
+  }
 
   public delete(id:number){
     return this.http.delete(`${this.apiURL}/${id}`);
