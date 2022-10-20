@@ -4,7 +4,7 @@ export interface createTheaterDTO{
     longitude: number;
 }
 
-export interface TheaterDTO{
+export interface theaterDTO{
     name:string;
     latitude: number;
     longitude: number;

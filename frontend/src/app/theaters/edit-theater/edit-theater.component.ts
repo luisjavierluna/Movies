@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { createTheaterDTO, TheaterDTO } from '../theater';
+import { createTheaterDTO, theaterDTO } from '../theater';
 
 @Component({
   selector: 'app-edit-theater',
@@ -10,7 +10,7 @@ export class EditTheaterComponent implements OnInit {
 
   constructor() { }
 
-  model: TheaterDTO = {name: "Sambil", latitude: 20.676003014849915, longitude: -103.34514856338502};
+  model: theaterDTO = {name: "Sambil", latitude: 20.676003014849915, longitude: -103.34514856338502};
 
   ngOnInit(): void {
   }
