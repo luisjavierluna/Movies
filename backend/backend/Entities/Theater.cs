@@ -10,5 +10,6 @@ namespace backend.Entities
         [StringLength(maximumLength: 75)]
         public string Name { get; set; }
         public Point Location { get; set; }
+        public List<TheatersMovies> TheatersMovies { get; set; }
     }
 }

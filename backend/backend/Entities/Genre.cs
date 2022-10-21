@@ -10,6 +10,6 @@ namespace backend.Entities
         [StringLength(maximumLength: 50)]
         [FirstCapitalLetter]
         public string Name { get; set; }
-
+        public List<GenresMovies> GenresMovies { get; set; }
     }
 }
