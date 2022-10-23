@@ -20,19 +20,13 @@ export class FormMovieComponent implements OnInit {
   @Output()
   OnSubmit: EventEmitter<createMovieDTO> = new EventEmitter<createMovieDTO>();
 
-  noSelectedGenres: MultipleSelectorModel[] = [
-    {key: 1, value: 'Drama'},
-    {key: 2, value: 'Action'},
-    {key: 3, value: 'Comedy'},
-  ]
+  @Input()
+  noSelectedGenres: MultipleSelectorModel[]
 
-  selectedGenres: MultipleSelectorModel[] = [];
+  selectedGenres: MultipleSelectorModel[] = []
 
-  noSelectedTheaters: MultipleSelectorModel[] = [
-    {key: 1, value: 'Sambil'},
-    {key: 2, value: 'Agora'},
-    {key: 3, value: 'Acrópolis'},
-  ]
+  @Input()
+  noSelectedTheaters: MultipleSelectorModel[]
 
   selectedTheaters: MultipleSelectorModel[] = []
 

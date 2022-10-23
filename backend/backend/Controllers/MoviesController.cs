@@ -4,6 +4,7 @@ using backend.Entities;
 using backend.Utilities;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 
 namespace backend.Controllers
 {
@@ -42,6 +43,18 @@ namespace backend.Controllers
             context.Add(movie);
             await context.SaveChangesAsync();
             return NoContent();
+        }
+
+        [HttpGet("PostGet")]
+        public async Task<ActionResult<MoviesPostGetDTO>> PostGet()
+        {
+            var theaters = await context.Theaters.ToListAsync();
+            var genres = await context.Genres.ToListAsync();
+
+            var theatersDTO = mapper.Map<List<TheaterDTO>>(theaters);
+            var genresDTO = mapper.Map<List<GenreDTO>>(genres);
+
+            return new MoviesPostGetDTO() { Theaters = theatersDTO, Genres = genresDTO };
         }
 
         private void SetActorsSequence(Movie movie)
