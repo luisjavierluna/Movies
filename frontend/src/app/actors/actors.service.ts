@@ -1,9 +1,9 @@
-import { HttpClient, HttpParams } from '@angular/common/http';
+import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { formatDate } from '../utilities/utilities';
-import { actorDTO, createActorDTO } from './actor';
+import { actorDTO, actorMovieDTO, createActorDTO } from './actor';
 
 @Injectable({
   providedIn: 'root'
@@ -23,6 +23,12 @@ export class ActorsService {
 
   public getById(id: number): Observable<actorDTO>{
     return this.http.get<actorDTO>(`${this.apiURL}/${id}`)
+  }
+
+  public getByName(name: string): Observable<actorMovieDTO[]>{
+    const headers = new HttpHeaders('Content-Type: application/json');
+    return this.http.post<actorMovieDTO[]>(`${this.apiURL}/searchByName`,
+    JSON.stringify(name), {headers});
   }
 
   public create(actor: createActorDTO){

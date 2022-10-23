@@ -12,3 +12,10 @@ export interface createActorDTO{
     photo: File
     biography: string
 }
+
+export interface actorMovieDTO{
+    id: number;
+    name: string;
+    character: string;
+    photo: string;
+}

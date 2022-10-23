@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { MultipleSelectorModel } from 'src/app/utilities/multiple-selector/MultipleSelectorModel';
+import { parseErrorsAPI } from 'src/app/utilities/utilities';
 import { createMovieDTO } from '../movie';
 import { MoviesService } from '../movies.service';
 
@@ -12,6 +13,7 @@ export class CreateMovieComponent implements OnInit {
 
   constructor(private moviesService: MoviesService) { }
 
+  errors: string[] = [];
   noSelectedGenres: MultipleSelectorModel[];
   noSelectedTheaters: MultipleSelectorModel[];
 
@@ -33,6 +35,11 @@ export class CreateMovieComponent implements OnInit {
   }
 
   saveChanges(movie: createMovieDTO){
-    console.log(movie)
+    this.moviesService.create(movie)
+    .subscribe({
+      next: () => console.log('success'),
+      error: error => this.errors = parseErrorsAPI(error)
+    })
   }
+
 }

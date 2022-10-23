@@ -1,8 +1,10 @@
 import { CdkDragDrop, moveItemInArray } from '@angular/cdk/drag-drop';
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, Input, OnInit, ViewChild } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
 import { MatAutocompleteSelectedEvent } from '@angular/material/autocomplete';
 import { MatTable } from '@angular/material/table';
+import { actorMovieDTO } from '../actor';
+import { ActorsService } from '../actors.service';
 
 @Component({
   selector: 'app-autocomplete-actors',
@@ -11,30 +13,26 @@ import { MatTable } from '@angular/material/table';
 })
 export class AutocompleteActorsComponent implements OnInit {
 
-  constructor() { }
+  constructor(private actorsService: ActorsService) { }
 
   control: FormControl = new FormControl
 
-  actors = [
-    {name: 'Tom Holland', character: '', image: 'http://t2.gstatic.com/licensed-image?q=tbn:ANd9GcQp7XNv6HleTfZwfX7nSAAOEM3Dntv26l7EICMisSls6G65kv_YNX9j87ORQ1TZhZTP'},
-    {name: 'Tom Hanks', character: '', image: 'http://t1.gstatic.com/licensed-image?q=tbn:ANd9GcTdeoR9slyrVN9PXuFEKaX_8MeW4YvmD1C5I4EOR5ERheDLpU96gxlussXC5pibExli'},
-    {name: 'Samuel L. Jackson', character: '', image: 'https://encrypted-tbn3.gstatic.com/images?q=tbn:ANd9GcSimO6w0Cd3ljSmsHCzH-RSl13g3Jt5IlQ1NiSZRyiGUAxKw5rm'},
-  ]
+  @Input()
+  selectedActors: actorMovieDTO[] = []
 
-  originalActors = this.actors
+  actorsToShow: actorMovieDTO[] = [];
 
-  selectedActors = []
-
-  columnsToShow = ['image', 'name', 'character', 'actions']
+  columnsToShow = ['photo', 'name', 'character', 'actions']
 
   @ViewChild(MatTable) table: MatTable<any>
 
   ngOnInit(): void {
-    this.control.valueChanges.subscribe(value => {
-      this.actors = this.originalActors
-      this.actors = this.actors.filter(actor => actor.name.indexOf(value) !== -1)
-    })
-  }
+    this.control.valueChanges.subscribe(name => {
+      if(typeof name === 'string' && name){
+        this.actorsService.getByName(name).subscribe({
+          next: actors => {this.actorsToShow = actors;}
+    })}
+  })}
 
   optionSelected(event: MatAutocompleteSelectedEvent){
     console.log(event.option.value)

@@ -11,8 +11,8 @@
     <mat-autocomplete #auto
         (optionSelected)="optionSelected($event)"
     >
-        <mat-option *ngFor="let option of actors" [value]="option">
-            <img [src]="option.image"> {{option.name}}
+        <mat-option *ngFor="let option of actorsToShow" [value]="option">
+            <img [src]="option.photo"> {{option.name}}
         </mat-option>
     </mat-autocomplete>
 </form>
@@ -27,10 +27,10 @@
     (cdkDropListDropped)="dragEnds($event)"
 >
 
-<ng-container matColumnDef="image">
+<ng-container matColumnDef="photo">
     <th mat-header-cell *matHeaderCellDef>No.</th>
     <td mat-cell *matCellDef="let element">
-        <img style="width: 50px;" [src]="element.image">
+        <img style="width: 50px;" [src]="element.photo">
     </td>
 </ng-container>
 

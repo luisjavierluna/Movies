@@ -2,6 +2,7 @@
 
 <app-form-movie 
 *ngIf="noSelectedTheaters"
+[errors]="errors"
 [noSelectedGenres]="noSelectedGenres"
 [noSelectedTheaters]="noSelectedTheaters"
 (OnSubmit)="saveChanges($event)"></app-form-movie>

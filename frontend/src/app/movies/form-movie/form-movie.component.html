@@ -1,3 +1,5 @@
+<app-show-errors [errors]="errors"></app-show-errors>
+
 <form (submit)="saveChanges()" [formGroup]="form">
     <mat-form-field appearance="outline">
         <mat-label>Title</mat-label>
@@ -48,7 +50,9 @@
 
     <h4>Select Actors</h4>
 
-    <app-autocomplete-actors></app-autocomplete-actors>
+    <app-autocomplete-actors
+    [selectedActors]="selectedActors"
+    ></app-autocomplete-actors>
 
     <div>
         <button mat-flat-button color="primary" [disabled]="form.invalid">
