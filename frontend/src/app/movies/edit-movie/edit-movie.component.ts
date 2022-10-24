@@ -10,8 +10,7 @@ export class EditMovieComponent implements OnInit {
 
   constructor() { }
 
-  model: MovieDTO = {title: 'Spider-Man', 'trailer': 'abc', inTheaters: true, summary: 'thing', 
-  releaseDate: new Date(), poster: 'https://encrypted-tbn1.gstatic.com/images?q=tbn:ANd9GcSgSLYeR2r0eYlaVxhkZ65bPtHlFrVlxo5APFkWlaaHlqEJIoa3'}
+  model: MovieDTO
 
   ngOnInit(): void {
   }

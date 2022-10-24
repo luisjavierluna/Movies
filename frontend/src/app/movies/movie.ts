@@ -21,6 +21,9 @@ export interface MovieDTO{
     trailer: string;
     releaseDate: Date;
     poster: string;
+    genres: genreDTO[]
+    actors: actorMovieDTO[]
+    theaters: theaterDTO[]
 }
 
 export interface MoviePostGet {

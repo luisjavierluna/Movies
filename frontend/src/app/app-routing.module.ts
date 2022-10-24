@@ -8,6 +8,7 @@ import { EditGenreComponent } from './genres/edit-genre/edit-genre.component';
 import { IndexGenresComponent } from './genres/index-genres/index-genres.component';
 import { LandingPageComponent } from './landing-page/landing-page.component';
 import { CreateMovieComponent } from './movies/create-movie/create-movie.component';
+import { DetailMovieComponent } from './movies/detail-movie/detail-movie.component';
 import { EditMovieComponent } from './movies/edit-movie/edit-movie.component';
 import { FilterMoviesComponent } from './movies/filter-movies/filter-movies.component';
 import { CreateTheaterComponent } from './theaters/create-theater/create-theater.component';
@@ -28,6 +29,7 @@ const routes: Routes = [
   {path: 'movies/create', component: CreateMovieComponent},
   {path: 'movies/edit/:id', component: EditMovieComponent},
   {path: 'movies/search', component: FilterMoviesComponent},
+  {path: 'movie/:id', component: DetailMovieComponent},
   {path: '**', redirectTo: ''},
 ];
 
