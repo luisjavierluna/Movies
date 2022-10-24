@@ -28,6 +28,22 @@ namespace backend.Controllers
             this.storerFiles = storerFiles;
         }
 
+        [HttpGet("{id:int}")]
+        public async Task<ActionResult<MovieDTO>> Get(int id)
+        {
+            var movie = await context.Movies
+                .Include(x => x.GenresMovies).ThenInclude(x => x.Genre)
+                .Include(x => x.ActorsMovies).ThenInclude(x => x.Actor)
+                .Include(x => x.TheatersMovies).ThenInclude(x => x.Theater)
+                .FirstOrDefaultAsync(x => x.Id == id);
+
+            if (movie == null) { return NotFound(); }
+
+            var dto = mapper.Map<MovieDTO>(movie);
+            dto.Actors = dto.Actors.OrderBy(x => x.Sequence).ToList();
+            return dto;
+        }
+
         [HttpPost]
         public async Task<ActionResult> Post([FromForm] CreateMovieDTO createMovieDTO)
         {
