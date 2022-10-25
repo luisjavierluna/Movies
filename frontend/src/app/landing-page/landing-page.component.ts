@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { MovieDTO } from '../movies/movie';
+import { MoviesService } from '../movies/movies.service';
 
 @Component({
   selector: 'app-landing-page',
@@ -6,22 +8,18 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./landing-page.component.css']
 })
 export class LandingPageComponent implements OnInit {
-  moviesInTheaters;
-  moviesFutureReleases = []
+  constructor(private moviesService: MoviesService) {}
+  
+  moviesInTheaters: MovieDTO[]
+  moviesFutureReleases: MovieDTO[]
 
   ngOnInit(): void {
-    this.moviesInTheaters = [{
-      movieTitle: 'Spider-Man - Far From Home',
-      releaseDate: new Date(),
-      price: 1400.99,
-      poster: 'https://encrypted-tbn1.gstatic.com/images?q=tbn:ANd9GcSgSLYeR2r0eYlaVxhkZ65bPtHlFrVlxo5APFkWlaaHlqEJIoa3'
-    },
-    {
-      movieTitle: 'Moana',
-      releaseDate: new Date('2016-11-14'),
-      price: 300.99,
-      poster: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS0I_NLZX7ywKTPOE6dP5IORzdjWJvBLz7ZLeyVR0HHuXieSF6l'
-    }]  
-  };
+    this.moviesService.getLandinPage().subscribe({
+      next: landingPage => {
+        this.moviesInTheaters = landingPage.inTheaters;
+        this.moviesFutureReleases = landingPage.futureReleases;
+      }
+    })
+  }
 
 }

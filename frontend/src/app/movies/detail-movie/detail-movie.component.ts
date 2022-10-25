@@ -19,7 +19,7 @@ export class DetailMovieComponent implements OnInit {
     movie: MovieDTO;
     realeaseDate: Date;
     trailerURL: SafeResourceUrl
-    coordinates: CoordinateWithMessage[];
+    coordinates: CoordinateWithMessage[] = []
 
   ngOnInit(): void {
     this.activatedRoute.params.subscribe({

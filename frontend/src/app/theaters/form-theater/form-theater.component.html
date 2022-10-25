@@ -9,14 +9,14 @@
 
     <h4>Select the theater on the map</h4>
 
-    <div>
+    <div style="position: relative">
         <app-map
         (selectedCoordinate)="selectedCoordinate($event)"
         [initialCoordinates]="initialCoordinate"
         ></app-map>
     </div>
 
-    <div>
+    <div style="margin-top: 650px">
         <button mat-flat-button color="primary" [disabled]="form.invalid">
             Save Changes
         </button>

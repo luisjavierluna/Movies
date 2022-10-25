@@ -15,6 +15,7 @@ export interface createMovieDTO{
 }
 
 export interface MovieDTO{
+    id: number
     title: string;
     summary: string;
     inTheaters: boolean;
@@ -29,4 +30,9 @@ export interface MovieDTO{
 export interface MoviePostGet {
     genres: genreDTO[];
     theaters: theaterDTO[];
+}
+
+export interface LandingPageDTO {
+    inTheaters: MovieDTO[]
+    futureReleases: MovieDTO[]
 }

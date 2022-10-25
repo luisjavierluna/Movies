@@ -1,6 +1,6 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { tileLayer, latLng, LeafletMouseEvent, Marker, marker, icon } from 'leaflet';
-import { Coordinate } from './coordinate';
+import { Coordinate, CoordinateWithMessage } from './coordinate';
 
 @Component({
   selector: 'app-map',
@@ -12,23 +12,32 @@ export class MapComponent implements OnInit {
   constructor() { }
 
   @Input()
-  initialCoordinates: Coordinate[] = [];
+  initialCoordinates: CoordinateWithMessage[] = []
+
+  @Input()
+  readOnly: boolean = false
 
   @Output()
   selectedCoordinate: EventEmitter<Coordinate> = new EventEmitter<Coordinate>();
 
   ngOnInit(): void {
-    this.layers = this.initialCoordinates.map(value => 
-      marker([value.latitude, value.longitude], {
-        icon: icon({
-          iconSize:[25, 41],
-          iconAnchor: [13, 41],
-          iconUrl: 'marker-icon.png',
-          iconRetinaUrl: 'marker-icon-2x.px',
-          shadowUrl: 'assets/marker-shadow.png'
+      this.layers = this.initialCoordinates.map(value => {
+        let markerVariable = marker([value.latitude, value.longitude], {
+          icon: icon({
+            iconSize:[25, 41],
+            iconAnchor: [13, 41],
+            iconUrl: 'marker-icon.png',
+            iconRetinaUrl: 'marker-icon-2x.px',
+            shadowUrl: 'assets/marker-shadow.png'
+          })
         })
-      })
-    );
+
+        if(value.message){
+          markerVariable.bindPopup(value.message, {autoClose: false, autoPan: false});
+        }
+
+        return markerVariable;
+    })
   }
 
   options = {
@@ -42,21 +51,24 @@ export class MapComponent implements OnInit {
   layers: Marker<any>[] = [];
 
   manageClick(event: LeafletMouseEvent){
-    const latitude = event.latlng.lat;
-    const longitude = event.latlng.lng;
-    console.log({latitude, longitude});
-
-    this.layers = [];
-    this.layers.push(marker([latitude, longitude], {
-      icon: icon({
-        iconSize:[25, 41],
-        iconAnchor: [13, 41],
-        iconUrl: 'marker-icon.png',
-        iconRetinaUrl: 'marker-icon-2x.px',
-        shadowUrl: 'assets/marker-shadow.png'
-      })
-    }))
-    this.selectedCoordinate.emit({ latitude: latitude, longitude: longitude})
+    
+    if(!this.readOnly){
+      const latitude = event.latlng.lat;
+      const longitude = event.latlng.lng;
+      console.log({latitude, longitude});
+  
+      this.layers = [];
+      this.layers.push(marker([latitude, longitude], {
+        icon: icon({
+          iconSize:[25, 41],
+          iconAnchor: [13, 41],
+          iconUrl: 'marker-icon.png',
+          iconRetinaUrl: 'marker-icon-2x.px',
+          shadowUrl: 'assets/marker-shadow.png'
+        })
+      }))
+      this.selectedCoordinate.emit({ latitude: latitude, longitude: longitude})
+    }
   }
 
 }

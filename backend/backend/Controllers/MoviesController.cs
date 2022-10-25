@@ -28,6 +28,31 @@ namespace backend.Controllers
             this.storerFiles = storerFiles;
         }
 
+        [HttpGet]
+        public async Task<ActionResult<LandingPageDTO>> Get()
+        {
+            var top = 6;
+            var hoy = DateTime.Today;
+
+            var futureReleases = await context.Movies
+                .Where(x => x.ReleaseDate > hoy)
+                .OrderBy(x => x.ReleaseDate)
+                .Take(top)
+                .ToListAsync();
+
+            var inTheaters = await context.Movies
+                .Where(x => x.InTheaters)
+                .OrderBy(x => x.ReleaseDate)
+                .Take(top)
+                .ToListAsync();
+
+            var result = new LandingPageDTO();
+            result.FutureReleases = mapper.Map<List<MovieDTO>>(futureReleases);
+            result.InTheaters = mapper.Map<List<MovieDTO>>(inTheaters);
+
+            return result;
+        }
+
         [HttpGet("{id:int}")]
         public async Task<ActionResult<MovieDTO>> Get(int id)
         {
