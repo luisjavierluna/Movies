@@ -98,6 +98,65 @@ namespace backend.Controllers
             return new MoviesPostGetDTO() { Theaters = theatersDTO, Genres = genresDTO };
         }
 
+        [HttpGet("PutGet/{id:int}")]
+        public async Task<ActionResult<MoviesPutGetDTO>> PutGet(int id)
+        {
+            var movieActionResult = await Get(id);
+            if (movieActionResult.Result is NotFoundResult) { return NotFound(); }
+
+            var movie = movieActionResult.Value;
+
+            var selectedGenresIds = movie.Genres.Select(x => x.Id).ToList();
+            var noSelectedGenres = await context.Genres
+                .Where(x => !selectedGenresIds.Contains(x.Id))
+                .ToListAsync();
+
+            var selectedTheatersIds = movie.Theaters.Select(x => x.Id).ToList();
+            var noSelectedTheaters = await context.Theaters
+                .Where(x => !selectedTheatersIds.Contains(x.Id))
+                .ToListAsync();
+
+            var noSelectedGenresDTO = mapper.Map<List<GenreDTO>>(noSelectedGenres);
+            var noSelectedTheatersDTO = mapper.Map<List<TheaterDTO>>(noSelectedTheaters);
+
+            var response = new MoviesPutGetDTO();
+            response.Movie = movie;
+            response.SelectedGenres = movie.Genres;
+            response.NoSelectedGenres= noSelectedGenresDTO;
+            response.SelectedTheaters = movie.Theaters;
+            response.NoSelectedTheaters = noSelectedTheatersDTO;
+            response.Actors = movie.Actors;
+            return response;
+        }
+
+        [HttpPut("{id:int")]
+        public async Task<ActionResult> Put(int id, [FromForm] CreateMovieDTO createMovieDTO)
+        {
+            var movie = await context.Movies
+                .Include(x => x.ActorsMovies)
+                .Include(x => x.GenresMovies)
+                .Include(x => x.TheatersMovies)
+                .FirstOrDefaultAsync(x => x.Id == id);
+
+            if (movie == null)
+            {
+                return NotFound();
+            }
+
+            movie = mapper.Map(createMovieDTO, movie);
+
+            if (createMovieDTO.Poster != null)
+            {
+                movie.Poster = await storerFiles.EditFile(container, createMovieDTO.Poster, movie.Poster);
+            }
+
+            SetActorsSequence(movie);
+
+            await context.SaveChangesAsync();
+            return NoContent();
+        }
+
+
         private void SetActorsSequence(Movie movie)
         {
             if (movie.ActorsMovies != null)
