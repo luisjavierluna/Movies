@@ -1,3 +1,11 @@
 <h2>Edit Movie</h2>
 
-<app-form-movie [model]="model" (OnSubmit)="saveChanges($event)"></app-form-movie>
+<app-form-movie 
+[noSelectedGenres]="noSelectedGenres"
+[selectedGenres]="selectedGenres"
+[selectedTheaters]="selectedTheaters"
+[noSelectedTheaters]="noSelectedTheaters"
+[selectedActors]="selectedActors"
+*ngIf="model"
+[model]="model" 
+(OnSubmit)="saveChanges($event)"></app-form-movie>

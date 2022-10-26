@@ -36,3 +36,12 @@ export interface LandingPageDTO {
     inTheaters: MovieDTO[]
     futureReleases: MovieDTO[]
 }
+
+export interface MoviePutGet{
+    movie: MovieDTO;
+    selectedGenres: genreDTO[];
+    noSelectedGenres: genreDTO[];
+    selectedTheaters: theaterDTO[];
+    noSelectedTheaters: theaterDTO[];
+    actors: actorMovieDTO[];
+}

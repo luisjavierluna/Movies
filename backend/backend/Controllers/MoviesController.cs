@@ -129,7 +129,7 @@ namespace backend.Controllers
             return response;
         }
 
-        [HttpPut("{id:int")]
+        [HttpPut("{id:int}")]
         public async Task<ActionResult> Put(int id, [FromForm] CreateMovieDTO createMovieDTO)
         {
             var movie = await context.Movies

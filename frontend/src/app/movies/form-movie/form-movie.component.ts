@@ -26,16 +26,20 @@ export class FormMovieComponent implements OnInit {
 
   @Input()
   noSelectedGenres: MultipleSelectorModel[]
-
+  
+  @Input()
   selectedGenres: MultipleSelectorModel[] = []
 
   @Input()
   noSelectedTheaters: MultipleSelectorModel[]
 
+  @Input()
   selectedTheaters: MultipleSelectorModel[] = []
 
   @Input()
   selectedActors: actorMovieDTO[] = []
+
+  changedImage = false;
 
   ngOnInit(): void {
     this.form = this.formBuilder.group({
@@ -62,6 +66,7 @@ export class FormMovieComponent implements OnInit {
 
   selectedFile(file: File) {
     this.form.get('poster').setValue(file);
+    this.changedImage = true;
   }
 
   changeMarkdown(text){
@@ -79,6 +84,10 @@ export class FormMovieComponent implements OnInit {
       return {id: val.id, character: val.character}
     });
     this.form.get('actors').setValue(actors);
+
+    if(!this.changedImage){
+      this.form.patchValue({'poster': null});
+    }
 
     this.OnSubmit.emit(this.form.value)
   }
