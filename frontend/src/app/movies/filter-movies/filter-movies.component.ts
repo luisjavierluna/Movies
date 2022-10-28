@@ -2,6 +2,11 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { Location } from '@angular/common';
 import { ActivatedRoute } from '@angular/router';
+import { genreDTO } from 'src/app/genres/genre';
+import { GenresService } from 'src/app/genres/genres.service';
+import { MoviesService } from '../movies.service';
+import { MovieDTO } from '../movie';
+import { PageEvent } from '@angular/material/paginator';
 
 @Component({
   selector: 'app-filter-movies',
@@ -12,23 +17,17 @@ export class FilterMoviesComponent implements OnInit {
 
   constructor(private formBuilder: FormBuilder,
     private location: Location,
-    private activatedRoute: ActivatedRoute) { }
+    private activatedRoute: ActivatedRoute,
+    private genresService: GenresService,
+    private moviesService: MoviesService) { }
 
   form: FormGroup;
+  genres: genreDTO[] = [];
+  currentPage = 1;
+  numberItemsToDisplay = 10;
+  numberItems;
 
-  genres = [
-    {id: 1, name: 'Drama'},
-    {id: 2, name: 'Action'},
-    {id: 3, name: 'Comedy'}
-  ]
-
-  movies = [
-    {title: 'Spider-Man: No Way Home', inTheaters: false, futureReleases: true, genres: [1, 2], poster: 'https://encrypted-tbn1.gstatic.com/images?q=tbn:ANd9GcSgSLYeR2r0eYlaVxhkZ65bPtHlFrVlxo5APFkWlaaHlqEJIoa3'},
-    {title: 'Moana', inTheaters: true, futureReleases: false, genres: [3], poster: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS0I_NLZX7ywKTPOE6dP5IORzdjWJvBLz7ZLeyVR0HHuXieSF6l'},
-    {title: 'Inception', inTheaters: false, futureReleases: false, genres: [1, 3], poster: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTfzT9O0IBDumCXZjeAIhSYLANDT5ip_dwMNKr9-fBQfaSuD3sv'},
-  ]
-
-  moviesOriginal = this.movies;
+  movies: MovieDTO[]
 
   originalForm = {
     title: '',
@@ -38,16 +37,22 @@ export class FilterMoviesComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.form = this.formBuilder.group(this.originalForm)
-    this.readValuesURL();
-    this.searchMovies(this.form.value);
-
-    this.form.valueChanges
-      .subscribe(values => {
-        this.movies = this.moviesOriginal;
-        this.searchMovies(values)
-        this.writeSearchParametersInURL()
-      })
+    this.genresService.getAll()
+    .subscribe({
+      next: genres => {
+        this.genres = genres
+        
+        this.form = this.formBuilder.group(this.originalForm)
+        this.readValuesURL();
+        this.searchMovies(this.form.value);
+    
+        this.form.valueChanges
+          .subscribe(values => {
+            this.searchMovies(values)
+            this.writeSearchParametersInURL()
+        })
+      }
+    })
   }
 
   private readValuesURL(){
@@ -99,25 +104,22 @@ export class FilterMoviesComponent implements OnInit {
   }
 
   searchMovies(values: any) {
-    if (values.title) {
-      this.movies = this.movies.filter(movie => movie.title.indexOf(values.title) !== -1)
-    }
-
-    if(values.genreId !== 0){
-      this.movies = this.movies.filter(movie => movie.genres.indexOf(values.genreId) !== -1)
-    }
-
-    if(values.futureReleases){
-      this.movies = this.movies.filter(movie => movie.futureReleases)
-    }
-
-    if(values.inTheaters){
-      this.movies = this.movies.filter(movie => movie.inTheaters)
-    }
+    values.page = this.currentPage;
+    values.recordsPerPage = this.numberItemsToDisplay;
+    this.moviesService.filter(values).subscribe(response => {
+      this.movies = response.body;
+      this.writeSearchParametersInURL();
+      this.numberItems = response.headers.get('totalRecordsQuantity');
+    })
   }
 
   clean(){
     this.form.patchValue(this.originalForm);
   }
 
+  paginatorUpdate(data: PageEvent){
+    this.currentPage = data.pageIndex + 1;
+    this.numberItemsToDisplay = data.pageSize;
+    this.searchMovies(this.form.value);
+  }
 }

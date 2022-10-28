@@ -14,11 +14,15 @@ export class GenresService {
 
   private apiURL = environment.apiURL + 'genres'
 
-  public getAll(page: number, recordsToShowQuantity: number): Observable<any> {
+  public getPaginated(page: number, recordsToShowQuantity: number): Observable<any> {
     let params = new HttpParams()
     params = params.append('page', page.toString())
     params = params.append('recordsPerPage', recordsToShowQuantity.toString())
     return this.http.get<genreDTO[]>(this.apiURL, {observe: 'response', params})
+  }
+
+  public getAll(){
+    return this.http.get<genreDTO[]>(`${this.apiURL}/all`);
   }
 
   public getById(id: number): Observable<genreDTO>{

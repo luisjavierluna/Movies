@@ -19,7 +19,13 @@
                     <button 
                     mat-flat-button
                     color="warn"
-                    type="button">
+                    type="button"
+                    [swal]="{title: 'Confirmation', 
+                    text: 'Are you sure you want to delete the record?', 
+                    showCancelButton: true}"
+                    (confirm)="delete(movie.id)"
+
+                    >
                     Delete
                     </button>
                 </div>

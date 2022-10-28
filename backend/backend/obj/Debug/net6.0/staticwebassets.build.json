@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "spl81kQ8MtDwfLXrrBY0yx+SHaI1JdIVCSGCjjI+ldw=",
+  "Hash": "dyX6nLp3QikxJiPm0ftWv+Ie1OJ3EkrWqE21pH/MEAM=",
   "Source": "backend",
   "BasePath": "_content/backend",
   "Mode": "Default",
@@ -85,6 +85,23 @@
       "OriginalItemSpec": "wwwroot\\actors\\e8976e0f-6ed9-4547-8563-3fd57742dc9b.jpg"
     },
     {
+      "Identity": "C:\\Users\\javie\\source\\repos\\Movies\\backend\\backend\\wwwroot\\movies\\5c758c1f-a7a5-4d5f-a8a3-e8b8c1b5f70a.jpg",
+      "SourceId": "backend",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\javie\\source\\repos\\Movies\\backend\\backend\\wwwroot\\",
+      "BasePath": "_content/backend",
+      "RelativePath": "movies/5c758c1f-a7a5-4d5f-a8a3-e8b8c1b5f70a.jpg",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\movies\\5c758c1f-a7a5-4d5f-a8a3-e8b8c1b5f70a.jpg"
+    },
+    {
       "Identity": "C:\\Users\\javie\\source\\repos\\Movies\\backend\\backend\\wwwroot\\movies\\6280883f-4ca5-4af1-b626-166d54664a7b.jpg",
       "SourceId": "backend",
       "SourceType": "Discovered",
@@ -100,6 +117,40 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\movies\\6280883f-4ca5-4af1-b626-166d54664a7b.jpg"
+    },
+    {
+      "Identity": "C:\\Users\\javie\\source\\repos\\Movies\\backend\\backend\\wwwroot\\movies\\8aeae51f-8683-4879-b8ef-f71606da06c2.jpg",
+      "SourceId": "backend",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\javie\\source\\repos\\Movies\\backend\\backend\\wwwroot\\",
+      "BasePath": "_content/backend",
+      "RelativePath": "movies/8aeae51f-8683-4879-b8ef-f71606da06c2.jpg",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\movies\\8aeae51f-8683-4879-b8ef-f71606da06c2.jpg"
+    },
+    {
+      "Identity": "C:\\Users\\javie\\source\\repos\\Movies\\backend\\backend\\wwwroot\\movies\\9ae86682-59ec-43d6-800d-37890b297102.jpg",
+      "SourceId": "backend",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\javie\\source\\repos\\Movies\\backend\\backend\\wwwroot\\",
+      "BasePath": "_content/backend",
+      "RelativePath": "movies/9ae86682-59ec-43d6-800d-37890b297102.jpg",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\movies\\9ae86682-59ec-43d6-800d-37890b297102.jpg"
     }
   ]
 }

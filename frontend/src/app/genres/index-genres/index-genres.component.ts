@@ -25,7 +25,7 @@ export class IndexGenresComponent implements OnInit {
   }
 
   loadRecords(page: number, recordsToShowQuantity){
-    this.genresService.getAll(page, recordsToShowQuantity)
+    this.genresService.getPaginated(page, recordsToShowQuantity)
     .subscribe({
       next: (response: HttpResponse<genreDTO[]>) => {
         this.genres = response.body

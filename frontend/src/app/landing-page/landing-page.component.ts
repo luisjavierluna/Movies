@@ -14,12 +14,20 @@ export class LandingPageComponent implements OnInit {
   moviesFutureReleases: MovieDTO[]
 
   ngOnInit(): void {
+    this.loadData()
+  }
+
+  loadData(){
     this.moviesService.getLandinPage().subscribe({
       next: landingPage => {
         this.moviesInTheaters = landingPage.inTheaters;
         this.moviesFutureReleases = landingPage.futureReleases;
       }
     })
+  }
+
+  deleted(){
+    this.loadData();
   }
 
 }

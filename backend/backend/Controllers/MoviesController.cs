@@ -69,8 +69,42 @@ namespace backend.Controllers
             return dto;
         }
 
+        [HttpGet("filter")]
+        public async Task<ActionResult<List<MovieDTO>>> Filter([FromQuery] FilterMoviesDTO filterMoviesDTO)
+        {
+            var moviesQueryable = context.Movies.AsQueryable();
+
+            if (!string.IsNullOrEmpty(filterMoviesDTO.Title))
+            {
+                moviesQueryable = moviesQueryable.Where(x => x.Title.Contains(filterMoviesDTO.Title));
+            }
+
+            if (filterMoviesDTO.InTheaters)
+            {
+                moviesQueryable = moviesQueryable.Where(x => x.InTheaters);
+            }
+
+            if (filterMoviesDTO.FutureReleases)
+            {
+                var today = DateTime.Today;
+                moviesQueryable = moviesQueryable.Where(x => x.ReleaseDate > today);
+            }
+
+            if (filterMoviesDTO.GenreId != 0)
+            {
+                moviesQueryable = moviesQueryable
+                    .Where(x => x.GenresMovies.Select(y => y.GenreId)
+                    .Contains(filterMoviesDTO.GenreId));
+            }
+
+            await HttpContext.InsertParametersPaginationInHeader(moviesQueryable);
+
+            var movies = await moviesQueryable.Paginate(filterMoviesDTO.paginationDTO).ToListAsync();
+            return mapper.Map<List<MovieDTO>>(movies);
+        }
+
         [HttpPost]
-        public async Task<ActionResult> Post([FromForm] CreateMovieDTO createMovieDTO)
+        public async Task<ActionResult<int>> Post([FromForm] CreateMovieDTO createMovieDTO)
         {
             var movie = mapper.Map<Movie>(createMovieDTO);
 
@@ -83,7 +117,7 @@ namespace backend.Controllers
 
             context.Add(movie);
             await context.SaveChangesAsync();
-            return NoContent();
+            return movie.Id;
         }
 
         [HttpGet("PostGet")]
@@ -156,7 +190,6 @@ namespace backend.Controllers
             return NoContent();
         }
 
-
         private void SetActorsSequence(Movie movie)
         {
             if (movie.ActorsMovies != null)
@@ -166,6 +199,24 @@ namespace backend.Controllers
                     movie.ActorsMovies[i].Sequence = i;
                 }
             }
+        }
+
+        [HttpDelete("{id:int}")]
+        public async Task<ActionResult> Delete(int id)
+        {
+            var movie = await context.Movies.FirstOrDefaultAsync(x => x.Id == id);
+
+            if (movie == null)
+            {
+                return NotFound();
+            }
+
+            context.Remove(movie);
+            await context.SaveChangesAsync();
+
+            await storerFiles.DeleteFile(movie.Poster, container);
+
+            return NoContent();
         }
     }
 }

@@ -103,12 +103,12 @@ namespace backend.Controllers
 
             var exists = await context.Actors.AnyAsync(x => x.Id == id);
 
-            if (!exists)
+            if (actor == null)
             {
                 return NotFound();
             }
 
-            context.Remove(new Actor() { Id = id });
+            context.Remove(actor);
             await context.SaveChangesAsync();
 
             await storerFiles.DeleteFile(actor.Photo, container);
