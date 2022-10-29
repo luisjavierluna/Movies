@@ -39,7 +39,8 @@ import { MultipleSelectorComponent } from './utilities/multiple-selector/multipl
 import { AutocompleteActorsComponent } from './actors/autocomplete-actors/autocomplete-actors.component';
 import { ShowErrorsComponent } from './utilities/show-errors/show-errors.component';
 import { DetailMovieComponent } from './movies/detail-movie/detail-movie.component';
-import { AuthorizedComponent } from './security/authorized/authorized.component'
+import { AuthorizedComponent } from './security/authorized/authorized.component';
+import { LoginComponent } from './security/login/login.component'
 
 @NgModule({
   declarations: [
@@ -72,7 +73,8 @@ import { AuthorizedComponent } from './security/authorized/authorized.component'
     AutocompleteActorsComponent,
     ShowErrorsComponent,
     DetailMovieComponent,
-    AuthorizedComponent
+    AuthorizedComponent,
+    LoginComponent
   ],
   imports: [
     BrowserModule,
