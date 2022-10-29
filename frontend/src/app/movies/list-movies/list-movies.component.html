@@ -12,23 +12,28 @@
                 <p>
                     <a [routerLink]="'/movie/' + movie.id">{{movie.movieTitle}}</a>
                 </p>
-                <div>
-                    <a mat-flat-button color="primary" [routerLink]="'/movies/edit/' + movie.id">
-                        Edit
-                    </a>
-                    <button 
-                    mat-flat-button
-                    color="warn"
-                    type="button"
-                    [swal]="{title: 'Confirmation', 
-                    text: 'Are you sure you want to delete the record?', 
-                    showCancelButton: true}"
-                    (confirm)="delete(movie.id)"
-
-                    >
-                    Delete
-                    </button>
-                </div>
+                
+                <app-authorized [rol]="'admin'">
+                    <ng-container Authorized>
+                        <div>
+                            <a mat-flat-button color="primary" [routerLink]="'/movies/edit/' + movie.id">
+                                Edit
+                            </a>
+                            <button 
+                            mat-flat-button
+                            color="warn"
+                            type="button"
+                            [swal]="{title: 'Confirmation', 
+                            text: 'Are you sure you want to delete the record?', 
+                            showCancelButton: true}"
+                            (confirm)="delete(movie.id)"
+                            >
+                            Delete
+                            </button>
+                        </div>
+                    </ng-container>
+                </app-authorized>
+            
             </div>
         </div>
 
