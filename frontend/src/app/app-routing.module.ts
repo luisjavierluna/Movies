@@ -13,6 +13,7 @@ import { DetailMovieComponent } from './movies/detail-movie/detail-movie.compone
 import { EditMovieComponent } from './movies/edit-movie/edit-movie.component';
 import { FilterMoviesComponent } from './movies/filter-movies/filter-movies.component';
 import { LoginComponent } from './security/login/login.component';
+import { SignInComponent } from './security/sign-in/sign-in.component';
 import { CreateTheaterComponent } from './theaters/create-theater/create-theater.component';
 import { EditTheaterComponent } from './theaters/edit-theater/edit-theater.component';
 import { IndexTheaterComponent } from './theaters/index-theater/index-theater.component';
@@ -33,6 +34,7 @@ const routes: Routes = [
   {path: 'movies/search', component: FilterMoviesComponent},
   {path: 'movie/:id', component: DetailMovieComponent},
   {path: 'login', component: LoginComponent},
+  {path: 'sign-in', component: SignInComponent},
   {path: '**', redirectTo: ''},
 ];
 

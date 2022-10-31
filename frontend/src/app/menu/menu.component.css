@@ -8,3 +8,7 @@ mat-toolbar {
 app-authorized {
     display: flex;
 }
+
+.space {
+    flex: 1 1 auto;
+}

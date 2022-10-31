@@ -40,7 +40,9 @@ import { AutocompleteActorsComponent } from './actors/autocomplete-actors/autoco
 import { ShowErrorsComponent } from './utilities/show-errors/show-errors.component';
 import { DetailMovieComponent } from './movies/detail-movie/detail-movie.component';
 import { AuthorizedComponent } from './security/authorized/authorized.component';
-import { LoginComponent } from './security/login/login.component'
+import { LoginComponent } from './security/login/login.component';
+import { SignInComponent } from './security/sign-in/sign-in.component';
+import { FormAuthenticationComponent } from './security/form-authentication/form-authentication.component'
 
 @NgModule({
   declarations: [
@@ -74,7 +76,9 @@ import { LoginComponent } from './security/login/login.component'
     ShowErrorsComponent,
     DetailMovieComponent,
     AuthorizedComponent,
-    LoginComponent
+    LoginComponent,
+    SignInComponent,
+    FormAuthenticationComponent
   ],
   imports: [
     BrowserModule,
