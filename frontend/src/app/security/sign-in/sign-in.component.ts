@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { parseErrorsAPI } from 'src/app/utilities/utilities';
 import { usersCredentials } from '../security';
 import { SecurityService } from '../security.service';
@@ -10,7 +11,9 @@ import { SecurityService } from '../security.service';
 })
 export class SignInComponent implements OnInit {
 
-  constructor(private securityService: SecurityService) { }
+  constructor(
+    private securityService: SecurityService,
+    private router: Router) { }
 
   ngOnInit(): void {
   }
@@ -20,7 +23,8 @@ export class SignInComponent implements OnInit {
   signIn(credentials: usersCredentials){
     this.securityService.signIn(credentials).subscribe({
       next: response => {
-        console.log(response);
+        this.securityService.saveToken(response)
+        this.router.navigate(['/'])
       },
       error: errors => this.errors = parseErrorsAPI(errors)
     })

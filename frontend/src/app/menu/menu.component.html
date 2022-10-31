@@ -34,8 +34,8 @@
 
     <app-authorized>
         <ng-container Authorized>
-            <span>Hi, </span>
-            <a mat-button>Logout</a>
+            <span>Hi, {{securityService.getFieldJWT('email')}}</span>
+            <a mat-button (click)="securityService.logout()">Logout</a>
         </ng-container>
         <ng-container NoAuthorized>
             <a mat-button routerLink="login">Login</a>
