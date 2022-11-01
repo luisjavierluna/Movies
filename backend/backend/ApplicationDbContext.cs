@@ -27,10 +27,10 @@ namespace backend
         public DbSet<Genre> Genres { get; set; }
         public DbSet<Actor> Actors { get; set; }
         public DbSet<Theater> Theaters { get; set; }
-
         public DbSet<Movie> Movies { get; set; }
         public DbSet<ActorsMovies> ActorsMovies { get; set; }
         public DbSet<GenresMovies> GenresMovies { get; set; }
         public DbSet<TheatersMovies> TheatersMovies { get; set; }
+        public DbSet<Rating> Ratings { get; set; }
     }
 }
