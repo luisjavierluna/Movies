@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
 import { ActivatedRoute } from '@angular/router';
+import { RatingService } from 'src/app/rating/rating.service';
 import { CoordinateWithMessage } from 'src/app/utilities/map/coordinate';
+import Swal from 'sweetalert2';
 import { MovieDTO } from '../movie';
 import { MoviesService } from '../movies.service';
 
@@ -12,9 +14,10 @@ import { MoviesService } from '../movies.service';
 })
 export class DetailMovieComponent implements OnInit {
 
-  constructor(private movesService: MoviesService,
+  constructor(private moviesService: MoviesService,
     private activatedRoute: ActivatedRoute,
-    private sanitizer: DomSanitizer) { }
+    private sanitizer: DomSanitizer,
+    private ratingService: RatingService) { }
 
     movie: MovieDTO;
     realeaseDate: Date;
@@ -24,9 +27,8 @@ export class DetailMovieComponent implements OnInit {
   ngOnInit(): void {
     this.activatedRoute.params.subscribe({
       next: params => {
-        this.movesService.getById(params.id).subscribe({
+        this.moviesService.getById(params.id).subscribe({
           next: movie => {
-            console.log(movie);
             this.movie = movie;
             this.realeaseDate = new Date(this.movie.releaseDate);
             this.trailerURL = this.generateURLYoutubeEmbed(this.movie.trailer);
@@ -37,6 +39,14 @@ export class DetailMovieComponent implements OnInit {
         )
       }}
     )
+  }
+
+  rated(score: number){
+    this.ratingService.rate(this.movie.id, score).subscribe({
+      next: () => {
+        Swal.fire("Success", "Your voto was received", 'success');
+      }
+    })
   }
 
   generateURLYoutubeEmbed(url: any): SafeResourceUrl {

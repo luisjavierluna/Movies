@@ -10,7 +10,7 @@
                     <img [src]="movie.poster" alt="Poster">
                 </a>
                 <p>
-                    <a [routerLink]="'/movie/' + movie.id">{{movie.movieTitle}}</a>
+                    <a [routerLink]="'/movie/' + movie.id">{{movie.title}}</a>
                 </p>
                 
                 <app-authorized [rol]="'admin'">
