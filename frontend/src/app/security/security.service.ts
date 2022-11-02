@@ -14,6 +14,7 @@ export class SecurityService {
   apiURL = environment.apiURL + 'accounts'
   private readonly tokenKey = 'token';
   private readonly expirationKey = 'token-expiracion';
+  private readonly fieldRole = 'role'
 
   isLoggedIn(): boolean {
     const token = localStorage.getItem(this.tokenKey);
@@ -38,8 +39,8 @@ export class SecurityService {
     localStorage.removeItem(this.expirationKey);
   }
 
-  getRol(): string {
-    return ''
+  getRole(): string {
+    return this.getFieldJWT(this.fieldRole)
   }
 
   getFieldJWT(field: string): string{

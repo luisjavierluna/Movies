@@ -19,7 +19,7 @@ export class AuthorizedComponent implements OnInit {
 
   isAuthorized(): boolean {
     if(this.rol) {
-      return this.securityService.getRol() === this.rol
+      return this.securityService.getRole() === this.rol
     }else{
       return this.securityService.isLoggedIn()
     }

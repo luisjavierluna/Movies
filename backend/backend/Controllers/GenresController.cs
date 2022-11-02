@@ -2,6 +2,8 @@
 using backend.DTOs;
 using backend.Entities;
 using backend.Utilities;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
@@ -10,6 +12,7 @@ namespace backend.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
+    [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme, Policy = "IsAdmin")]
     public class GenresController : ControllerBase
     {
         private readonly ILogger<GenresController> logger;
@@ -36,6 +39,7 @@ namespace backend.Controllers
         }
 
         [HttpGet("all")]
+        [AllowAnonymous]
         public async Task<ActionResult<List<GenreDTO>>> All()
         {
             var genres = await context.Genres.ToListAsync();
