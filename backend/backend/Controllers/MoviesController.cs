@@ -98,7 +98,7 @@ namespace backend.Controllers
 
             var dto = mapper.Map<MovieDTO>(movie);
             dto.UserVote = userVote;
-            dto.AverageVoto = averageVote;
+            dto.AverageVote = averageVote;
             dto.Actors = dto.Actors.OrderBy(x => x.Sequence).ToList();
             return dto;
         }

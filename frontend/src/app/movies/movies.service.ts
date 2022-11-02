@@ -40,7 +40,6 @@ export class MoviesService {
     const formData = this.BuildFormData(movie);
     return this.http.post<number>(this.apiURL, formData);
   }
-
   
   public edit(id: number, movie: createMovieDTO){
     const formData = this.BuildFormData(movie);

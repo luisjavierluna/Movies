@@ -11,7 +11,7 @@
             </mat-chip>
 
         </mat-chip-list>
-        | {{realeaseDate.toDateString()}} | Average: {{movie.averageVote}} | Your Vote: 0.0
+        | {{realeaseDate.toDateString()}} | Average: {{movie.averageVote}} | Your Vote:
         <app-rating 
         [selectedRating]="movie.userVote"
         (rated)="rated($event)"

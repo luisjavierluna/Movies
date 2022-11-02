@@ -16,6 +16,6 @@ namespace backend.DTOs
         public List<ActorMovieDTO> Actors { get; set; }
         public List<TheaterDTO> Theaters { get; set; }
         public int UserVote { get; set; }
-        public double AverageVoto { get; set; }
+        public double AverageVote { get; set; }
     }
 }

@@ -8,7 +8,7 @@ import { environment } from 'src/environments/environment';
 export class RatingService {
 
   constructor(private httpClient: HttpClient) { }
-  apiURL = environment.apiURL + 'rating';
+  apiURL = environment.apiURL + 'ratings';
 
   rate(movieId: number, score: number){
     return this.httpClient.post(this.apiURL, {movieId: movieId, score: score});
