@@ -44,6 +44,7 @@ import { LoginComponent } from './security/login/login.component';
 import { SignInComponent } from './security/sign-in/sign-in.component';
 import { FormAuthenticationComponent } from './security/form-authentication/form-authentication.component'
 import { SecurityInterceptorService } from './security/security-interceptor.service';
+import { IndexUsersComponent } from './security/index-users/index-users.component';
 
 @NgModule({
   declarations: [
@@ -79,7 +80,8 @@ import { SecurityInterceptorService } from './security/security-interceptor.serv
     AuthorizedComponent,
     LoginComponent,
     SignInComponent,
-    FormAuthenticationComponent
+    FormAuthenticationComponent,
+    IndexUsersComponent
   ],
   imports: [
     BrowserModule,

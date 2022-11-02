@@ -12,6 +12,7 @@ import { CreateMovieComponent } from './movies/create-movie/create-movie.compone
 import { DetailMovieComponent } from './movies/detail-movie/detail-movie.component';
 import { EditMovieComponent } from './movies/edit-movie/edit-movie.component';
 import { FilterMoviesComponent } from './movies/filter-movies/filter-movies.component';
+import { IndexUsersComponent } from './security/index-users/index-users.component';
 import { LoginComponent } from './security/login/login.component';
 import { SignInComponent } from './security/sign-in/sign-in.component';
 import { CreateTheaterComponent } from './theaters/create-theater/create-theater.component';
@@ -35,6 +36,7 @@ const routes: Routes = [
   {path: 'movie/:id', component: DetailMovieComponent},
   {path: 'login', component: LoginComponent},
   {path: 'sign-in', component: SignInComponent},
+  {path: 'users', component: IndexUsersComponent, canActivate: [IsAdminGuard]},
   {path: '**', redirectTo: ''},
 ];
 
