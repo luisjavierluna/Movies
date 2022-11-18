@@ -246,7 +246,7 @@ namespace backend.Controllers
                 return NotFound();
             }
 
-            context.Remove(movie);
+            context.Movies.Remove(movie);
             await context.SaveChangesAsync();
 
             await storerFiles.DeleteFile(movie.Poster, container);
