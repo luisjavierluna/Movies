@@ -92,7 +92,7 @@ namespace backend.Controllers
 
             if (createActorDTO.Photo != null)
             {
-                actor.Photo = await storerFiles.SaveFile(container, createActorDTO.Photo);
+                actor.Photo = await storerFiles.EditFile(container, createActorDTO.Photo, actor.Photo);
             }
 
             await context.SaveChangesAsync();
@@ -104,14 +104,12 @@ namespace backend.Controllers
         {
             var actor = await context.Actors.FirstOrDefaultAsync(x => x.Id == id);
 
-            var exists = await context.Actors.AnyAsync(x => x.Id == id);
-
             if (actor == null)
             {
                 return NotFound();
             }
 
-            context.Remove(actor);
+            context.Actors.Remove(actor);
             await context.SaveChangesAsync();
 
             await storerFiles.DeleteFile(actor.Photo, container);

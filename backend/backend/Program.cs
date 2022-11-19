@@ -28,7 +28,7 @@ builder.Services.AddSingleton(provider =>
 
 builder.Services.AddSingleton<GeometryFactory>(NtsGeometryServices.Instance.CreateGeometryFactory(srid:4326));
 
-builder.Services.AddTransient<IStorerFiles, StorerFilesLocal>();
+builder.Services.AddTransient<IStorerFiles, StorerAzureStorage>();
 
 builder.Services.AddHttpContextAccessor();
 builder.Services.AddDbContext<ApplicationDbContext>(options =>
